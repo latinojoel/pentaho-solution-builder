@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>package_list</name>
+    <name>read_property_file</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,11 +66,32 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2013&#x2f;07&#x2f;02 09&#x3a;42&#x3a;16.638</created_date>
+  <created_date>2014&#x2f;04&#x2f;01 23&#x3a;48&#x3a;00.508</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#x2f;07&#x2f;02 09&#x3a;42&#x3a;16.638</modified_date>
+  <modified_date>2014&#x2f;04&#x2f;01 23&#x3a;48&#x3a;00.508</modified_date>
   </info>
   <notepads>
+    <notepad>
+      <note>This property input will read all properties files existing in resources folder&#xd;&#xa;default properties will be merged to kettle.properties advanced not</note>
+      <xloc>60</xloc>
+      <yloc>200</yloc>
+      <width>442</width>
+      <heigth>40</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>128</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>255</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>AgileBI</name>
@@ -78,7 +99,7 @@
     <type>MONETDB</type>
     <access>Native</access>
     <database>pentaho-instaview</database>
-    <port>50006</port>
+    <port>50000</port>
     <username>monetdb</username>
     <password>Encrypted 2be98afc86aa7f2e4cb14a17edb86abd8</password>
     <servername/>
@@ -89,42 +110,44 @@
       <attribute><code>EXTRA_OPTION_INFOBRIGHT.characterEncoding</code><attribute>UTF-8</attribute></attribute>
       <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
       <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>50006</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>50000</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
     </attributes>
   </connection>
   <connection>
-    <name>BIAtlassian</name>
-    <server>&#x24;&#x7b;ATLASSIAN_DB_HOST&#x7d;</server>
-    <type>POSTGRESQL</type>
+    <name>PentahoRefData</name>
+    <server>&#x24;&#x7b;refData.Host&#x7d;</server>
+    <type>GENERIC</type>
     <access>Native</access>
-    <database>&#x24;&#x7b;ATLASSIAN_DB_NAME&#x7d;</database>
-    <port>&#x24;&#x7b;ATLASSIAN_DB_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;ATLASSIAN_DB_USER&#x7d;</username>
-    <password>&#x24;&#x7b;ATLASSIAN_DB_PASSWORD&#x7d;</password>
+    <database>&#x24;&#x7b;refData.Database&#x7d;</database>
+    <port>&#x24;&#x7b;refData.Port&#x7d;</port>
+    <username>&#x24;&#x7b;refData.Username&#x7d;</username>
+    <password>&#x24;&#x7b;refData.Password&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>&#x24;&#x7b;refData.Driver&#x7d;</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>&#x24;&#x7b;refData.JDBC&#x7d;</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;ATLASSIAN_DB_PORT&#x7d;</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;refData.Port&#x7d;</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Get File Names</from><to>Modified Java Script Value</to><enabled>Y</enabled> </hop>
-  <hop> <from>Select values</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>
-  <hop> <from>Modified Java Script Value</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Property Input</from><to>set as root variables</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Copy rows to result</name>
-    <type>RowsToResult</type>
+    <name>Property Input</name>
+    <type>PropertyInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -133,55 +156,74 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>600</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Get File Names</name>
-    <type>GetFileNames</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <filter>
-      <filterfiletype>all_files</filterfiletype>
-    </filter>
-    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <file_type>property</file_type>
+    <encoding>UTF-8</encoding>
+    <include>N</include>
+    <include_field/>
+    <filename_Field/>
     <rownum>N</rownum>
     <isaddresult>Y</isaddresult>
     <filefield>N</filefield>
     <rownum_field/>
-    <filename_Field/>
-    <wildcard_Field/>
-    <exclude_wildcard_Field/>
-    <dynamic_include_subfolders>N</dynamic_include_subfolders>
-    <limit>0</limit>
+    <resetrownumber>N</resetrownumber>
+    <resolvevaluevariable>N</resolvevaluevariable>
+    <ini_section>N</ini_section>
+    <ini_section_field/>
+    <section/>
     <file>
-      <name>&#x24;&#x7b;PBF_HOME&#x7d;&#x2f;packages&#x2f;staging</name>
-      <filemask>.&#x2a;&#x5c;.jar</filemask>
+      <name>&#x24;&#x7b;PLUGIN_ROOT_FOLDER&#x7d;&#x2f;resources&#x2f;</name>
       <exclude_filemask/>
+      <filemask>.&#x2a;.properties</filemask>
       <file_required>N</file_required>
-      <include_subfolders>Y</include_subfolders>
+      <include_subfolders>N</include_subfolders>
     </file>
+    <fields>
+      <field>
+        <name>Key</name>
+        <column>key</column>
+        <type>String</type>
+        <format/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <currency/>
+        <decimal/>
+        <group/>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>Value</name>
+        <column>value</column>
+        <type>String</type>
+        <format/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <currency/>
+        <decimal/>
+        <group/>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>120</xloc>
-      <yloc>80</yloc>
+      <yloc>100</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Modified Java Script Value</name>
+    <name>set as root variables</name>
     <type>ScriptValueMod</type>
     <description/>
     <distribute>Y</distribute>
@@ -195,48 +237,11 @@
     <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f;Script here&#xa;&#xa;var directory &#x3d; &#x22;&#x2f;packages&#x2f;staging&#x22;&#x3b;&#xd;&#xa;&#xd;&#xa;var pbf_home&#x3d;getVariable&#x28;&#x22;PBF_HOME&#x22;,&#x22;&#x22;&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var newPath &#x3d; path.replace&#x28;&#x2f;&#x5c;&#x5c;&#x2f;g,&#x22;&#x2f;&#x22;&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var indexOfDir &#x3d; newPath.indexOf&#x28;directory&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;var destination_path &#x3d; newPath.substring&#x28;indexOfDir &#x2b; directory.length&#x29;&#x3b;&#xd;&#xa;</jsScript_script>
-      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
-        <jsScript_name>getVariable_Sample</jsScript_name>
-        <jsScript_script>&#x2f;&#x2f; Retrieves the value of a given Kettle&#x2f;Pentaho Variable&#xa;&#x2f;&#x2f; &#xa;&#x2f;&#x2f; Usage&#x3a;&#xa;&#x2f;&#x2f; getVariable&#x28;var, var&#x29;&#x3b;&#xa;&#x2f;&#x2f; 1&#x3a; String - The name of the variable to retrieve.&#xa;&#x2f;&#x2f; 2&#x3a; String - The default if the variable doesn&#x27;t exist.&#xa;&#x2f;&#x2f;&#xa;&#x2f;&#x2f; 2007-07-27&#xa;&#x2f;&#x2f;&#xa;var strVarName&#x3d;&#x22;getVariableTest&#x22;&#x3b;&#xa;var strVarValue&#x3d;&#x22;123456&#x22;&#x3b;&#xa;Alert&#x28;getVariable&#x28;strVarName, &#x22;&#x22;&#x29;&#x29;&#x3b;&#xa;setVariable&#x28;strVarName,strVarValue, &#x22;r&#x22;&#x29;&#x3b;&#xa;Alert&#x28;getVariable&#x28;strVarName, &#x22;&#x22;&#x29;&#x29;&#x3b;&#xa;strVarValue&#x3d;&#x22;654321&#x22;&#x3b;&#xa;setVariable&#x28;strVarName,strVarValue, &#x22;r&#x22;&#x29;&#x3b;&#xa;Alert&#x28;getVariable&#x28;strVarName, &#x22;&#x22;&#x29;&#x29;&#x3b;</jsScript_script>
-      </jsScript>    </jsScripts>    <fields>      <field>        <name>destination_path</name>
-        <rename>destination_path</rename>
-        <type>String</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <replace>N</replace>
-      </field>    </fields>     <cluster_schema/>
+        <jsScript_script>setVariable&#x28;Key,Value,&#x22;r&#x22;&#x29;&#x3b;&#xa;&#xa;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>280</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Select values</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>      <field>        <name>filename</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>destination_path</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>        <select_unspecified>N</select_unspecified>
-    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>440</xloc>
-      <yloc>80</yloc>
+      <xloc>300</xloc>
+      <yloc>100</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

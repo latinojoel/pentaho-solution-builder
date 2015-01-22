@@ -35,6 +35,32 @@
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>PentahoRefData</name>
+    <server>&#x24;&#x7b;refData.Host&#x7d;</server>
+    <type>GENERIC</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;refData.Database&#x7d;</database>
+    <port>&#x24;&#x7b;refData.Port&#x7d;</port>
+    <username>&#x24;&#x7b;refData.Username&#x7d;</username>
+    <password>&#x24;&#x7b;refData.Password&#x7d;</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>&#x24;&#x7b;refData.Driver&#x7d;</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>&#x24;&#x7b;refData.JDBC&#x7d;</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;refData.Port&#x7d;</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
     <slaveservers>
     </slaveservers>
 <job-log-table><connection/>
@@ -89,60 +115,67 @@
       <yloc>80</yloc>
       </entry>
     <entry>
-      <name>Success</name>
+      <name>Load properties</name>
       <description/>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>540</xloc>
-      <yloc>80</yloc>
-      </entry>
-    <entry>
-      <name>folder_structure</name>
-      <description/>
-      <type>COPY_FILES</type>
-      <copy_empty_folders>Y</copy_empty_folders>
+      <type>JOB</type>
+      <specification_method>filename</specification_method>
+      <job_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;util&#x2f;load_property_file.kjb</filename>
+      <jobname/>
       <arg_from_previous>N</arg_from_previous>
-      <overwrite_files>N</overwrite_files>
-      <include_subfolders>Y</include_subfolders>
-      <remove_source_files>N</remove_source_files>
-      <add_result_filesname>N</add_result_filesname>
-      <destination_is_a_file>N</destination_is_a_file>
-      <create_destination_folder>Y</create_destination_folder>
-      <fields>
-        <field>
-          <source_filefolder>&#x24;&#x7b;PLUGIN_ROOT_FOLDER&#x7d;&#x2f;resources&#x2f;folder_structure</source_filefolder>
-          <destination_filefolder>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</destination_filefolder>
-          <wildcard/>
-        </field>
-      </fields>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <force_separate_logging>N</force_separate_logging>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>PLUGIN_PROPERTY_FILE</name>
+            <stream_name/>
+            <value>&#x2f;home&#x2f;bvt&#x2f;xpandit&#x2f;psb&#x2f;tasks&#x2f;clean&#x2f;clean.properties</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
+      <xloc>220</xloc>
       <yloc>80</yloc>
       </entry>
     <entry>
-      <name>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</name>
+      <name>sql_files_exection exists</name>
       <description/>
-      <type>SIMPLE_EVAL</type>
-      <valuetype>variable</valuetype>
-      <fieldname/>
-      <variablename>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue/>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>Y</successwhenvarset>
+      <type>TABLE_EXISTS</type>
+      <tablename>&#x24;&#x7b;refData.tableName&#x7d;</tablename>
+      <schemaname/>
+      <connection>PentahoRefData</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>380</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>Create sql_files_exection</name>
+      <description/>
+      <type>SQL</type>
+      <sql>create table &#x24;&#x7b;refData.tableName&#x7d;&#x28;&#xd;&#xa;	&#x22;filename&#x22; varchar&#x28;255&#x29;,&#xd;&#xa;	&#x22;date&#x22; timestamp  NOT NULL &#xd;&#xa;&#x29;&#x3b;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>T</sendOneStatement>
+      <connection>PentahoRefData</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>560</xloc>
       <yloc>80</yloc>
       </entry>
     <entry>
@@ -153,26 +186,69 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
-      <yloc>180</yloc>
+      <xloc>560</xloc>
+      <yloc>200</yloc>
       </entry>
     <entry>
-      <name>Write To Log</name>
+      <name>Success</name>
       <description/>
-      <type>WRITE_TO_LOG</type>
-      <logmessage>ERROR</logmessage>
-      <loglevel>Error</loglevel>
-      <logsubject>Variable &#x7b;PROJECT_LOCATION&#x7d; not defined</logsubject>
+      <type>SUCCESS</type>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
-      <yloc>180</yloc>
+      <xloc>760</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>Success 2</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>380</xloc>
+      <yloc>220</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>folder_structure</from>
+      <from>START</from>
+      <to>Load properties</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Load properties</from>
+      <to>sql_files_exection exists</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>sql_files_exection exists</from>
+      <to>Create sql_files_exection</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create sql_files_exection</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create sql_files_exection</from>
       <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -181,35 +257,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>START</from>
-      <to>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</from>
-      <to>folder_structure</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</from>
-      <to>Write To Log</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Write To Log</from>
-      <to>Abort job</to>
+      <from>sql_files_exection exists</from>
+      <to>Success 2</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

@@ -1,31 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>execute_package_target</name>
+  <name>install_release</name>
     <description/>
     <extended_description/>
     <job_version/>
-    <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2013&#x2f;07&#x2f;03 17&#x3a;28&#x3a;47.524</created_date>
+  <created_date>2014&#x2f;04&#x2f;01 23&#x3a;06&#x3a;17.106</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#x2f;07&#x2f;03 17&#x3a;28&#x3a;47.524</modified_date>
+  <modified_date>2014&#x2f;04&#x2f;01 23&#x3a;06&#x3a;17.106</modified_date>
     <parameters>
-        <parameter>
-            <name>name</name>
-            <default_value/>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>org</name>
-            <default_value/>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>rev</name>
-            <default_value/>
-            <description/>
-        </parameter>
     </parameters>
   <connection>
     <name>AgileBI</name>
@@ -33,7 +17,7 @@
     <type>MONETDB</type>
     <access>Native</access>
     <database>pentaho-instaview</database>
-    <port>50006</port>
+    <port>50000</port>
     <username>monetdb</username>
     <password>Encrypted 2be98afc86aa7f2e4cb14a17edb86abd8</password>
     <servername/>
@@ -44,7 +28,7 @@
       <attribute><code>EXTRA_OPTION_INFOBRIGHT.characterEncoding</code><attribute>UTF-8</attribute></attribute>
       <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
       <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>50006</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>50000</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
@@ -75,7 +59,7 @@
   <connection>
     <name>PentahoRefData</name>
     <server>&#x24;&#x7b;refData.Host&#x7d;</server>
-    <type>POSTGRESQL</type>
+    <type>GENERIC</type>
     <access>Native</access>
     <database>&#x24;&#x7b;refData.Database&#x7d;</database>
     <port>&#x24;&#x7b;refData.Port&#x7d;</port>
@@ -85,6 +69,8 @@
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>&#x24;&#x7b;refData.Driver&#x7d;</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>&#x24;&#x7b;refData.JDBC&#x7d;</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -130,12 +116,148 @@
    <shared_objects_file/>
   <entries>
     <entry>
-      <name>Execute Target</name>
+      <name>START</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>80</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>Get Release Name</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;util&#x2f;get_release_name.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>400</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>Unzip Release</name>
+      <description/>
+      <type>UNZIP</type>
+      <zipfilename>&#x24;&#x7b;RELEASES_PATH&#x7d;&#x2f;&#x24;&#x7b;RELEASE_NAME&#x7d;.zip</zipfilename>
+      <wildcard/>
+      <wildcardexclude/>
+      <targetdirectory>&#x24;&#x7b;RELEASE_LOCATION&#x7d;</targetdirectory>
+      <movetodirectory/>
+      <afterunzip>0</afterunzip>
+      <addfiletoresult>N</addfiletoresult>
+      <isfromprevious>N</isfromprevious>
+      <adddate>N</adddate>
+      <addtime>N</addtime>
+      <addOriginalTimestamp>N</addOriginalTimestamp>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <rootzip>N</rootzip>
+      <createfolder>Y</createfolder>
+      <nr_limit>10</nr_limit>
+      <wildcardSource/>
+      <success_condition>success_if_no_errors</success_condition>
+      <iffileexists>OVERWRITE</iffileexists>
+      <create_move_to_directory>N</create_move_to_directory>
+      <setOriginalModificationDate>N</setOriginalModificationDate>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>840</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>Release Exists</name>
+      <description/>
+      <type>FILES_EXIST</type>
+      <filename/>
+      <fields>
+        <field>
+          <name>&#x24;&#x7b;RELEASES_PATH&#x7d;&#x2f;&#x24;&#x7b;RELEASE_NAME&#x7d;.zip</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>540</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>Abort job</name>
+      <description/>
+      <type>ABORT</type>
+      <message/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>540</xloc>
+      <yloc>240</yloc>
+      </entry>
+    <entry>
+      <name>Copy Files</name>
+      <description/>
+      <type>COPY_FILES</type>
+      <copy_empty_folders>Y</copy_empty_folders>
+      <arg_from_previous>N</arg_from_previous>
+      <overwrite_files>Y</overwrite_files>
+      <include_subfolders>Y</include_subfolders>
+      <remove_source_files>N</remove_source_files>
+      <add_result_filesname>N</add_result_filesname>
+      <destination_is_a_file>N</destination_is_a_file>
+      <create_destination_folder>N</create_destination_folder>
+      <fields>
+        <field>
+          <source_filefolder>&#x24;&#x7b;RELEASE_LOCATION&#x7d;&#x2f;</source_filefolder>
+          <destination_filefolder>&#x24;&#x7b;IR_UNZIP_TARGET_DIRECTORY&#x7d;</destination_filefolder>
+          <wildcard>.&#x2a;</wildcard>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1120</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>Load properties</name>
       <description/>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>&#x24;&#x7b;PBF_HOME&#x7d;&#x2f;packages&#x2f;work&#x2f;&#x24;&#x7b;org&#x7d;&#x2f;&#x24;&#x7b;name&#x7d;&#x2f;&#x24;&#x7b;rev&#x7d;&#x2f;runtime&#x2f;targets&#x2f;&#x24;&#x7b;target&#x7d;.kjb</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;util&#x2f;load_property_file.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -154,58 +276,60 @@
       <pass_export>N</pass_export>
       <force_separate_logging>N</force_separate_logging>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>520</xloc>
-      <yloc>160</yloc>
-      </entry>
-    <entry>
-      <name>START</name>
-      <description/>
-      <type>SPECIAL</type>
-      <start>Y</start>
-      <dummy>N</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
-      <intervalSeconds>0</intervalSeconds>
-      <intervalMinutes>60</intervalMinutes>
-      <hour>12</hour>
-      <minutes>0</minutes>
-      <weekDay>1</weekDay>
-      <DayOfMonth>1</DayOfMonth>
+            <parameter>            <name>PLUGIN_PROPERTY_FILE</name>
+            <stream_name/>
+            <value>&#x2f;home&#x2f;bvt&#x2f;xpandit&#x2f;psb&#x2f;tasks&#x2f;clean&#x2f;clean.properties</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>220</xloc>
-      <yloc>160</yloc>
+      <yloc>80</yloc>
       </entry>
     <entry>
-      <name>PLUGIN_ROOT_FOLDER</name>
+      <name>Create a folder</name>
       <description/>
-      <type>SET_VARIABLES</type>
-      <replacevars>Y</replacevars>
-      <filename/>
-      <file_variable_type>JVM</file_variable_type>
+      <type>CREATE_FOLDER</type>
+      <foldername>&#x24;&#x7b;IR_UNZIP_TARGET_DIRECTORY&#x7d;</foldername>
+      <fail_of_folder_exists>N</fail_of_folder_exists>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>980</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>Delete folders</name>
+      <description/>
+      <type>DELETE_FOLDERS</type>
+      <arg_from_previous>N</arg_from_previous>
+      <success_condition>success_if_no_errors</success_condition>
+      <limit_folders>10</limit_folders>
       <fields>
         <field>
-          <variable_name>PLUGIN_ROOT_FOLDER</variable_name>
-          <variable_value>&#x24;&#x7b;PBF_HOME&#x7d;&#x2f;packages&#x2f;work&#x2f;&#x24;&#x7b;org&#x7d;&#x2f;&#x24;&#x7b;name&#x7d;&#x2f;&#x24;&#x7b;rev&#x7d;</variable_value>
-          <variable_type>CURRENT_JOB</variable_type>
+          <name>&#x24;&#x7b;RELEASE_LOCATION&#x7d;</name>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>360</xloc>
-      <yloc>160</yloc>
+      <xloc>680</xloc>
+      <yloc>80</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
+      <from>Release Exists</from>
+      <to>Abort job</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>START</from>
-      <to>PLUGIN_ROOT_FOLDER</to>
+      <to>Load properties</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -213,16 +337,82 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>PLUGIN_ROOT_FOLDER</from>
-      <to>Execute Target</to>
+      <from>Load properties</from>
+      <to>Get Release Name</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Unzip Release</from>
+      <to>Create a folder</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>Create a folder</from>
+      <to>Copy Files</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Get Release Name</from>
+      <to>Release Exists</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Release Exists</from>
+      <to>Delete folders</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Delete folders</from>
+      <to>Unzip Release</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>Folder could not exists</note>
+      <xloc>700</xloc>
+      <yloc>20</yloc>
+      <width>143</width>
+      <heigth>25</heigth>
+      <fontname>Microsoft Sans Serif</fontname>
+      <fontsize>8</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
 
 </job>

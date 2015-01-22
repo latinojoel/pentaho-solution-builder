@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>main_executor</name>
+  <name>clean</name>
     <description/>
     <extended_description/>
     <job_version/>
     <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2013&#x2f;07&#x2f;03 16&#x3a;09&#x3a;46.047</created_date>
+  <created_date>2014&#x2f;04&#x2f;29 23&#x3a;14&#x3a;17.636</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#x2f;07&#x2f;03 16&#x3a;09&#x3a;46.047</modified_date>
+  <modified_date>2014&#x2f;04&#x2f;29 23&#x3a;14&#x3a;17.636</modified_date>
     <parameters>
-        <parameter>
-            <name>plugin</name>
-            <default_value>all</default_value>
-            <description/>
-        </parameter>
-        <parameter>
-            <name>target</name>
-            <default_value/>
-            <description/>
-        </parameter>
     </parameters>
   <connection>
     <name>AgileBI</name>
@@ -28,7 +18,7 @@
     <type>MONETDB</type>
     <access>Native</access>
     <database>pentaho-instaview</database>
-    <port>50006</port>
+    <port>50000</port>
     <username>monetdb</username>
     <password>Encrypted 2be98afc86aa7f2e4cb14a17edb86abd8</password>
     <servername/>
@@ -39,21 +29,65 @@
       <attribute><code>EXTRA_OPTION_INFOBRIGHT.characterEncoding</code><attribute>UTF-8</attribute></attribute>
       <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
       <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>50006</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>50000</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
     </attributes>
   </connection>
   <connection>
-    <name>BIAtlassian</name>
-    <server>&#x24;&#x7b;ATLASSIAN_DB_HOST&#x7d;</server>
+    <name>AIRC_ERP</name>
+    <server>&#x24;&#x7b;aircerp.host&#x7d;</server>
+    <type>INFORMIX</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;aircerp.dbname&#x7d;</database>
+    <port>&#x24;&#x7b;aircerp.port&#x7d;</port>
+    <username>&#x24;&#x7b;aircerp.username&#x7d;</username>
+    <password>&#x24;&#x7b;aircerp.password&#x7d;</password>
+    <servername>&#x24;&#x7b;aircerp.servername&#x7d;</servername>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;aircerp.port&#x7d;</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>AIRC_ORIG</name>
+    <server>&#x24;&#x7b;aircerp.host&#x7d;</server>
+    <type>INFORMIX</type>
+    <access>Native</access>
+    <database>bi_tond_040614</database>
+    <port>1526</port>
+    <username>informix</username>
+    <password>Encrypted 2be98afc86aa7f2e4cb79af79cc91ff8a</password>
+    <servername>srvlbd05_net</servername>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1526</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>CONTROL</name>
+    <server>&#x24;&#x7b;control.host&#x7d;</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>&#x24;&#x7b;ATLASSIAN_DB_NAME&#x7d;</database>
-    <port>&#x24;&#x7b;ATLASSIAN_DB_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;ATLASSIAN_DB_USER&#x7d;</username>
-    <password>&#x24;&#x7b;ATLASSIAN_DB_PASSWORD&#x7d;</password>
+    <database>&#x24;&#x7b;control.dbname&#x7d;</database>
+    <port>&#x24;&#x7b;control.port&#x7d;</port>
+    <username>&#x24;&#x7b;control.username&#x7d;</username>
+    <password>&#x24;&#x7b;control.password&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -61,9 +95,31 @@
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;ATLASSIAN_DB_PORT&#x7d;</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;control.port&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>DW</name>
+    <server>&#x24;&#x7b;dw.host&#x7d;</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;dw.dbname&#x7d;</database>
+    <port>&#x24;&#x7b;dw.port&#x7d;</port>
+    <username>&#x24;&#x7b;dw.username&#x7d;</username>
+    <password>&#x24;&#x7b;dw.password&#x7d;</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;dw.port&#x7d;</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
@@ -90,6 +146,50 @@
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>REFDATA</name>
+    <server>&#x24;&#x7b;refdata.host&#x7d;</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;refdata.dbname&#x7d;</database>
+    <port>&#x24;&#x7b;refdata.port&#x7d;</port>
+    <username>&#x24;&#x7b;refdata.username&#x7d;</username>
+    <password>&#x24;&#x7b;refdata.password&#x7d;</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;refdata.port&#x7d;</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>STAGING</name>
+    <server>&#x24;&#x7b;staging.host&#x7d;</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;staging.dbname&#x7d;</database>
+    <port>&#x24;&#x7b;staging.port&#x7d;</port>
+    <username>&#x24;&#x7b;staging.username&#x7d;</username>
+    <password>&#x24;&#x7b;staging.password&#x7d;</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;staging.port&#x7d;</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
@@ -143,22 +243,67 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>100</xloc>
-      <yloc>80</yloc>
+      <xloc>80</xloc>
+      <yloc>60</yloc>
       </entry>
     <entry>
-      <name>list_packages</name>
+      <name>Success</name>
+      <description/>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>920</xloc>
+      <yloc>60</yloc>
+      </entry>
+    <entry>
+      <name>Load properties</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>filename</specification_method>
+      <job_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;util&#x2f;load_property_file.kjb</filename>
+      <jobname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <force_separate_logging>N</force_separate_logging>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>PLUGIN_PROPERTY_FILE</name>
+            <stream_name/>
+            <value>&#x2f;home&#x2f;bvt&#x2f;xpandit&#x2f;psb&#x2f;tasks&#x2f;clean&#x2f;clean.properties</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>260</xloc>
+      <yloc>60</yloc>
+      </entry>
+    <entry>
+      <name>Prepare FILES_TO_DELETE</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;list_packages.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;util&#x2f;prepare_files_to_delete.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
+      <clear_files>Y</clear_files>
       <set_logfile>N</set_logfile>
       <logfile/>
       <logext/>
@@ -176,68 +321,41 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
-      <yloc>80</yloc>
+      <xloc>460</xloc>
+      <yloc>60</yloc>
       </entry>
     <entry>
-      <name>Execute Package Target</name>
+      <name>Backup files</name>
       <description/>
-      <type>JOB</type>
-      <specification_method>filename</specification_method>
-      <job_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;execute_package_target.kjb</filename>
-      <jobname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>Y</params_from_previous>
-      <exec_per_row>Y</exec_per_row>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
+      <type>COPY_MOVE_RESULT_FILENAMES</type>
+      <foldername/>
+      <specify_wildcard>N</specify_wildcard>
+      <wildcard/>
+      <wildcardexclude/>
+      <destination_folder>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;backup&#x2f;</destination_folder>
+      <nr_errors_less_than>10</nr_errors_less_than>
+      <success_condition>success_if_no_errors</success_condition>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <slave_server_name/>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <expand_remote_job>N</expand_remote_job>
-      <create_parent_folder>N</create_parent_folder>
-      <pass_export>N</pass_export>
-      <force_separate_logging>N</force_separate_logging>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>org</name>
-            <stream_name>org</stream_name>
-            <value/>
-            </parameter>            <parameter>            <name>name</name>
-            <stream_name>name</stream_name>
-            <value/>
-            </parameter>            <parameter>            <name>rev</name>
-            <stream_name>rev</stream_name>
-            <value/>
-            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <action>move</action>
+      <AddDateBeforeExtension>N</AddDateBeforeExtension>
+      <OverwriteFile>Y</OverwriteFile>
+      <CreateDestinationFolder>Y</CreateDestinationFolder>
+      <RemovedSourceFilename>N</RemovedSourceFilename>
+      <AddDestinationFilename>N</AddDestinationFilename>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>520</xloc>
-      <yloc>80</yloc>
-      </entry>
-    <entry>
-      <name>Write To Log</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <logmessage>Running &#x24;&#x7b;target&#x7d; of &#x24;&#x7b;plugin&#x7d; plugin&#x28;s&#x29;</logmessage>
-      <loglevel>Basic</loglevel>
-      <logsubject/>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>380</xloc>
-      <yloc>80</yloc>
+      <xloc>700</xloc>
+      <yloc>60</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
       <from>START</from>
-      <to>list_packages</to>
+      <to>Load properties</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -245,8 +363,8 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>list_packages</from>
-      <to>Write To Log</to>
+      <from>Load properties</from>
+      <to>Prepare FILES_TO_DELETE</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -254,22 +372,31 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Write To Log</from>
-      <to>Execute Package Target</to>
+      <from>Prepare FILES_TO_DELETE</from>
+      <to>Backup files</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>Backup files</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
-      <note>This step receive two parameters&#x3a;&#xd;&#xa;plugin&#x3a; default value is &#x22;all&#x22;, but can be specified a plugin name to be executed.&#xd;&#xa;target	&#x3a; the target to be executed</note>
-      <xloc>80</xloc>
-      <yloc>160</yloc>
-      <width>476</width>
-      <heigth>55</heigth>
+      <note>A new backup folder will be created &#x3c;plugin_folder&#x3e;&#x2f;backup&#x2f;</note>
+      <xloc>580</xloc>
+      <yloc>140</yloc>
+      <width>367</width>
+      <heigth>25</heigth>
       <fontname>Microsoft Sans Serif</fontname>
       <fontsize>8</fontsize>
       <fontbold>N</fontbold>

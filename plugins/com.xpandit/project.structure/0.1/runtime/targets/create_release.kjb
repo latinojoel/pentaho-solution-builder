@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>init</name>
+  <name>create_release</name>
     <description/>
     <extended_description/>
     <job_version/>
-    <job_status>0</job_status>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2013&#x2f;07&#x2f;03 15&#x3a;07&#x3a;56.944</created_date>
+  <created_date>2014&#x2f;03&#x2f;18 17&#x3a;53&#x3a;09.883</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2013&#x2f;07&#x2f;03 15&#x3a;07&#x3a;56.944</modified_date>
+  <modified_date>2014&#x2f;03&#x2f;18 17&#x3a;53&#x3a;09.883</modified_date>
     <parameters>
     </parameters>
   <connection>
@@ -33,6 +32,52 @@
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>BIAtlassian</name>
+    <server>&#x24;&#x7b;ATLASSIAN_DB_HOST&#x7d;</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;ATLASSIAN_DB_NAME&#x7d;</database>
+    <port>&#x24;&#x7b;ATLASSIAN_DB_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;ATLASSIAN_DB_USER&#x7d;</username>
+    <password>&#x24;&#x7b;ATLASSIAN_DB_PASSWORD&#x7d;</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;ATLASSIAN_DB_PORT&#x7d;</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>PentahoRefData</name>
+    <server>&#x24;&#x7b;refData.Host&#x7d;</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>&#x24;&#x7b;refData.Database&#x7d;</database>
+    <port>&#x24;&#x7b;refData.Port&#x7d;</port>
+    <username>&#x24;&#x7b;refData.Username&#x7d;</username>
+    <password>&#x24;&#x7b;refData.Password&#x7d;</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;refData.Port&#x7d;</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
     <slaveservers>
@@ -85,7 +130,30 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>100</xloc>
+      <xloc>80</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>Shell</name>
+      <description/>
+      <type>SHELL</type>
+      <filename>&#x24;&#x7b;PLUGIN_ROOT_FOLDER&#x7d;&#x2f;resources&#x2f;create_release.bat</filename>
+      <work_directory>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</work_directory>
+      <arg_from_previous>N</arg_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>Y</set_logfile>
+      <logfile>&#x24;&#x7b;PLUGIN_ROOT_FOLDER&#x7d;&#x2f;logs&#x2f;create_release</logfile>
+      <set_append_logfile>Y</set_append_logfile>
+      <logext>log</logext>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <insertScript>N</insertScript>
+      <script/>
+      <loglevel>Basic</loglevel>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>620</xloc>
       <yloc>80</yloc>
       </entry>
     <entry>
@@ -95,94 +163,122 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>540</xloc>
+      <xloc>880</xloc>
       <yloc>80</yloc>
       </entry>
     <entry>
-      <name>folder_structure</name>
+      <name>Load properties</name>
       <description/>
-      <type>COPY_FILES</type>
-      <copy_empty_folders>Y</copy_empty_folders>
+      <type>JOB</type>
+      <specification_method>filename</specification_method>
+      <job_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;util&#x2f;load_property_file.kjb</filename>
+      <jobname/>
       <arg_from_previous>N</arg_from_previous>
-      <overwrite_files>N</overwrite_files>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <force_separate_logging>N</force_separate_logging>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>PLUGIN_PROPERTY_FILE</name>
+            <stream_name/>
+            <value>&#x2f;home&#x2f;bvt&#x2f;xpandit&#x2f;psb&#x2f;tasks&#x2f;clean&#x2f;clean.properties</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>200</xloc>
+      <yloc>80</yloc>
+      </entry>
+    <entry>
+      <name>Zip file</name>
+      <description/>
+      <type>ZIP_FILE</type>
+      <zipfilename>&#x24;&#x7b;RELEASES_PATH&#x7d;&#x2f;&#x24;&#x7b;RELEASE_NAME&#x7d;.zip</zipfilename>
+      <compressionrate>1</compressionrate>
+      <ifzipfileexists>2</ifzipfileexists>
+      <wildcard>.&#x2a;</wildcard>
+      <wildcardexclude/>
+      <sourcedirectory>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</sourcedirectory>
+      <movetodirectory/>
+      <afterzip>0</afterzip>
+      <addfiletoresult>N</addfiletoresult>
+      <isfromprevious>N</isfromprevious>
+      <createparentfolder>N</createparentfolder>
+      <adddate>N</adddate>
+      <addtime>N</addtime>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <createMoveToDirectory>N</createMoveToDirectory>
       <include_subfolders>Y</include_subfolders>
-      <remove_source_files>N</remove_source_files>
-      <add_result_filesname>N</add_result_filesname>
-      <destination_is_a_file>N</destination_is_a_file>
-      <create_destination_folder>Y</create_destination_folder>
-      <fields>
-        <field>
-          <source_filefolder>&#x24;&#x7b;PLUGIN_ROOT_FOLDER&#x7d;&#x2f;resources&#x2f;folder_structure</source_filefolder>
-          <destination_filefolder>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</destination_filefolder>
-          <wildcard/>
-        </field>
-      </fields>
+      <stored_source_path_depth>1</stored_source_path_depth>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
+      <xloc>740</xloc>
       <yloc>80</yloc>
       </entry>
     <entry>
-      <name>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</name>
+      <name>Get Release Name</name>
       <description/>
-      <type>SIMPLE_EVAL</type>
-      <valuetype>variable</valuetype>
-      <fieldname/>
-      <variablename>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</variablename>
-      <fieldtype>string</fieldtype>
-      <mask/>
-      <comparevalue/>
-      <minvalue/>
-      <maxvalue/>
-      <successcondition>equal</successcondition>
-      <successnumbercondition>equal</successnumbercondition>
-      <successbooleancondition>false</successbooleancondition>
-      <successwhenvarset>Y</successwhenvarset>
-      <parallel>N</parallel>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;util&#x2f;get_release_name.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
+      <xloc>340</xloc>
       <yloc>80</yloc>
       </entry>
     <entry>
-      <name>Abort job</name>
+      <name>Create a folder</name>
       <description/>
-      <type>ABORT</type>
-      <message/>
+      <type>CREATE_FOLDER</type>
+      <foldername>&#x24;&#x7b;PLUGIN_ROOT_FOLDER&#x7d;&#x2f;logs</foldername>
+      <fail_of_folder_exists>N</fail_of_folder_exists>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
-      <yloc>180</yloc>
-      </entry>
-    <entry>
-      <name>Write To Log</name>
-      <description/>
-      <type>WRITE_TO_LOG</type>
-      <logmessage>ERROR</logmessage>
-      <loglevel>Error</loglevel>
-      <logsubject>Variable &#x7b;PROJECT_LOCATION&#x7d; not defined</logsubject>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>240</xloc>
-      <yloc>180</yloc>
+      <xloc>480</xloc>
+      <yloc>80</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>folder_structure</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>START</from>
-      <to>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</to>
+      <to>Load properties</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -190,8 +286,17 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</from>
-      <to>folder_structure</to>
+      <from>Zip file</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Shell</from>
+      <to>Zip file</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -199,17 +304,26 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>&#x24;&#x7b;PROJECT_LOCATION&#x7d;</from>
-      <to>Write To Log</to>
+      <from>Load properties</from>
+      <to>Get Release Name</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>N</evaluation>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Write To Log</from>
-      <to>Abort job</to>
+      <from>Get Release Name</from>
+      <to>Create a folder</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create a folder</from>
+      <to>Shell</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
